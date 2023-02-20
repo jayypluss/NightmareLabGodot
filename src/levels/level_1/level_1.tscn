@@ -1,0 +1,94 @@
+[gd_scene load_steps=5 format=3 uid="uid://crux4d2qhr8v8"]
+
+[ext_resource type="Script" path="res://src/levels/level_1/light_bulb.gd" id="1_qjmkd"]
+[ext_resource type="PackedScene" uid="uid://c8aem4qjchnrf" path="res://src/player/player.tscn" id="1_qtwv6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwofb"]
+albedo_color = Color(0.156863, 0.0862745, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_om2lg"]
+albedo_color = Color(0.580392, 0.584314, 0.552941, 1)
+normal_scale = -16.0
+clearcoat = 0.0
+anisotropy = -1.0
+ao_on_uv2 = true
+heightmap_scale = -16.0
+
+[node name="Level1" type="Node3D"]
+
+[node name="GlobalFloor" type="CSGBox3D" parent="."]
+use_collision = true
+collision_layer = 2
+size = Vector3(200, 0.01, 200)
+material = SubResource("StandardMaterial3D_mwofb")
+
+[node name="GlobalFloor2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.91064, 0)
+use_collision = true
+collision_layer = 2
+size = Vector3(200, 0.01, 200)
+material = SubResource("StandardMaterial3D_mwofb")
+
+[node name="Room1" type="Node3D" parent="."]
+
+[node name="WallRight" type="CSGBox3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 20)
+use_collision = true
+collision_layer = 2
+size = Vector3(40, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="WallLeft" type="CSGBox3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -20)
+use_collision = true
+collision_layer = 2
+size = Vector3(40, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="WallFront" type="CSGBox3D" parent="Room1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 1.5, 0)
+use_collision = true
+collision_layer = 2
+size = Vector3(40, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="WallFront2" type="CSGBox3D" parent="Room1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, 1.5, 0)
+use_collision = true
+collision_layer = 2
+size = Vector3(40, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="LightBulb" type="OmniLight3D" parent="Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1006, 2.82875, 16.7472)
+light_color = Color(1, 0.933333, 0.670588, 1)
+light_energy = 2.25
+light_specular = 4.293
+shadow_enabled = true
+shadow_bias = 3.2
+omni_range = 19.177
+omni_attenuation = 1.27456
+script = ExtResource("1_qjmkd")
+
+[node name="HideTimer" type="Timer" parent="Room1/LightBulb"]
+wait_time = 5.0
+
+[node name="ShowTimer" type="Timer" parent="Room1/LightBulb"]
+wait_time = 0.25
+one_shot = true
+
+[node name="ReHideTimer" type="Timer" parent="Room1/LightBulb"]
+wait_time = 0.25
+one_shot = true
+
+[node name="ReShowTimer" type="Timer" parent="Room1/LightBulb"]
+wait_time = 0.25
+one_shot = true
+
+[node name="Player" parent="." instance=ExtResource("1_qtwv6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.88402, 0)
+
+[connection signal="timeout" from="Room1/LightBulb/HideTimer" to="Room1/LightBulb" method="_on_blinking_timer_timeout"]
+[connection signal="timeout" from="Room1/LightBulb/ShowTimer" to="Room1/LightBulb" method="_on_show_timer_timeout"]
+[connection signal="timeout" from="Room1/LightBulb/ReHideTimer" to="Room1/LightBulb" method="_on_re_hide_timer_timeout"]
+[connection signal="timeout" from="Room1/LightBulb/ReShowTimer" to="Room1/LightBulb" method="_on_re_show_timer_timeout"]
