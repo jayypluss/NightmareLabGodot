@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://crux4d2qhr8v8"]
+[gd_scene load_steps=13 format=3 uid="uid://crux4d2qhr8v8"]
 
-[ext_resource type="Script" path="res://src/levels/level_1/light_bulb.gd" id="1_qjmkd"]
 [ext_resource type="PackedScene" uid="uid://c8aem4qjchnrf" path="res://src/player/player.tscn" id="1_qtwv6"]
+[ext_resource type="PackedScene" uid="uid://q0aqowhkgjtm" path="res://src/environment/light_bulb.tscn" id="1_vj1r3"]
+[ext_resource type="Script" path="res://src/environment/interactables/button.gd" id="2_7x8f2"]
 [ext_resource type="PackedScene" uid="uid://dpukuxwbf56hg" path="res://src/items/flashlight.tscn" id="3_lfdmc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwofb"]
@@ -14,6 +15,59 @@ clearcoat = 0.0
 anisotropy = -1.0
 ao_on_uv2 = true
 heightmap_scale = -16.0
+
+[sub_resource type="Curve3D" id="Curve3D_68nfe"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_wov3j"]
+resource_name = "lift"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../../ButtonPath/PathFollow:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f8ukf"]
+_data = {
+"lift": SubResource("Animation_wov3j")
+}
+
+[sub_resource type="Curve3D" id="Curve3D_efoo2"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -0.05, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_do54e"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f28fm"]
+size = Vector3(1.5, 1, 1.5)
 
 [node name="Level1" type="Node3D"]
 
@@ -71,61 +125,106 @@ material = SubResource("StandardMaterial3D_om2lg")
 [node name="InnerWalls" type="Node3D" parent="Room1"]
 
 [node name="Wall5" type="CSGBox3D" parent="Room1/InnerWalls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.17365, 1.5, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.0033, 1.5, 5.46972)
 use_collision = true
 collision_layer = 2
 collision_mask = 5
 size = Vector3(40, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall8" type="CSGBox3D" parent="Room1/InnerWalls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.45274, 1.5, 17.127)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(0.1, 3, 12)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall10" type="CSGBox3D" parent="Room1/InnerWalls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.3641, 1.5, 7.21157)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(0.1, 3, 10)
 material = SubResource("StandardMaterial3D_om2lg")
 
 [node name="Wall6" type="CSGBox3D" parent="Room1/InnerWalls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.18787, 1.5, -2.82203)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.50756, 1.5, -2.82203)
 use_collision = true
 collision_layer = 2
 collision_mask = 5
 size = Vector3(40, 3, 0.1)
 material = SubResource("StandardMaterial3D_om2lg")
 
-[node name="LightBulb" type="OmniLight3D" parent="Room1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1006, 2.82875, 16.7472)
-light_color = Color(1, 0.933333, 0.670588, 1)
-light_energy = 2.25
-light_specular = 4.293
-shadow_enabled = true
-shadow_bias = 3.2
-omni_range = 19.177
-omni_attenuation = 1.27456
-script = ExtResource("1_qjmkd")
+[node name="Wall9" type="CSGBox3D" parent="Room1/InnerWalls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.39006, 1.5, 12.172)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(10, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
 
-[node name="HideTimer" type="Timer" parent="Room1/LightBulb"]
-wait_time = 5.0
+[node name="LightBulb" parent="Room1" instance=ExtResource("1_vj1r3")]
+should_blink = true
 
-[node name="ShowTimer" type="Timer" parent="Room1/LightBulb"]
-wait_time = 0.25
-one_shot = true
+[node name="LightBulb2" parent="Room1" instance=ExtResource("1_vj1r3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.664, 2.79294, 19.7103)
+light_energy = 0.5
 
-[node name="ReHideTimer" type="Timer" parent="Room1/LightBulb"]
-wait_time = 0.25
-one_shot = true
+[node name="LightBulb3" parent="Room1" instance=ExtResource("1_vj1r3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3254, 2.79294, 19.7103)
+light_energy = 0.5
 
-[node name="ReShowTimer" type="Timer" parent="Room1/LightBulb"]
-wait_time = 0.25
-one_shot = true
+[node name="Interactables" type="Node3D" parent="Room1"]
+
+[node name="InteractableDoor" type="Node3D" parent="Room1/Interactables"]
+script = ExtResource("2_7x8f2")
+
+[node name="DoorPath" type="Path3D" parent="Room1/Interactables/InteractableDoor"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17.1255, 1.5, 10.0635)
+curve = SubResource("Curve3D_68nfe")
+
+[node name="PathFollow" type="PathFollow3D" parent="Room1/Interactables/InteractableDoor/DoorPath"]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
+
+[node name="Door" type="CSGBox3D" parent="Room1/Interactables/InteractableDoor/DoorPath/PathFollow"]
+transform = Transform3D(-4.37114e-08, 0, 1, 1, -4.37114e-08, 4.37114e-08, 4.37114e-08, 1, 1.91069e-15, 0, 0, 0)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(0.1, 3, 6.2)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Room1/Interactables/InteractableDoor"]
+root_node = NodePath("../DoorPath/PathFollow/Door")
+libraries = {
+"": SubResource("AnimationLibrary_f8ukf")
+}
+
+[node name="ButtonPath" type="Path3D" parent="Room1/Interactables/InteractableDoor"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.59989e-21, 0, 1, 14.1139, 1.49783, 11.334)
+curve = SubResource("Curve3D_efoo2")
+
+[node name="PathFollow" type="PathFollow3D" parent="Room1/Interactables/InteractableDoor/ButtonPath"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
+
+[node name="Button" type="CSGCylinder3D" parent="Room1/Interactables/InteractableDoor/ButtonPath/PathFollow"]
+transform = Transform3D(1, 4.38335e-08, -4.37112e-08, 4.38335e-08, -0.00279252, 0.999996, 4.37112e-08, -0.999996, -0.00279252, 0, 0, 0)
+radius = 0.07
+height = 0.125
+material = SubResource("StandardMaterial3D_do54e")
+
+[node name="InteractionArea" type="Area3D" parent="Room1/Interactables/InteractableDoor/ButtonPath/PathFollow/Button"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/Interactables/InteractableDoor/ButtonPath/PathFollow/Button/InteractionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.456491, 0)
+shape = SubResource("BoxShape3D_f28fm")
 
 [node name="Player" parent="." instance=ExtResource("1_qtwv6")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.88402, 0)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
-transform = Transform3D(0.999999, -0.00167636, 0.000200866, 0.001676, 0.999997, 0.00176651, -0.000203827, -0.00176617, 0.999998, 0, 0, 0)
-visible = false
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17.1278, 1.88402, 14.959)
 
 [node name="Flashlight" parent="." instance=ExtResource("3_lfdmc")]
-transform = Transform3D(0.987485, 0.15771, -6.89376e-09, 1.73404e-15, -4.37114e-08, -1, -0.15771, 0.987485, -4.31644e-08, -16.7906, 0.0764318, 17.3584)
+transform = Transform3D(0.987485, 0.15771, -6.89376e-09, 1.73404e-15, -4.37114e-08, -1, -0.15771, 0.987485, -4.31644e-08, 5.60903, 0.0764318, -11.1516)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.1221)
-
-[connection signal="timeout" from="Room1/LightBulb/HideTimer" to="Room1/LightBulb" method="_on_blinking_timer_timeout"]
-[connection signal="timeout" from="Room1/LightBulb/ShowTimer" to="Room1/LightBulb" method="_on_show_timer_timeout"]
-[connection signal="timeout" from="Room1/LightBulb/ReHideTimer" to="Room1/LightBulb" method="_on_re_hide_timer_timeout"]
-[connection signal="timeout" from="Room1/LightBulb/ReShowTimer" to="Room1/LightBulb" method="_on_re_show_timer_timeout"]
+[connection signal="body_entered" from="Room1/Interactables/InteractableDoor/ButtonPath/PathFollow/Button/InteractionArea" to="Room1/Interactables/InteractableDoor" method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="Room1/Interactables/InteractableDoor/ButtonPath/PathFollow/Button/InteractionArea" to="Room1/Interactables/InteractableDoor" method="_on_interaction_area_body_exited"]

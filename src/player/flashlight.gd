@@ -18,7 +18,6 @@ func trigger1():
 		toggle_light()
 
 func trigger2():
-	print('next_color_index: ', next_color_index)
 	if light and light.visible:
 		if light.light_color.to_html(false) != colors[next_color_index].to_html(false):
 			set_color(colors[next_color_index])
