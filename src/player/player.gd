@@ -19,3 +19,11 @@ func _get_configuration_warnings() -> PackedStringArray:
 		return PackedStringArray(["Missing camera node"])
 	else:
 		return []
+
+func pick_item(item: Node3D):
+#	item.reparent($CameraPivot/Horizontal/Vertical/RightArm/HoldingItem)
+	item.call_deferred("reparent", $CameraPivot/Horizontal/Vertical/RightArm/HoldingItem)
+	item.global_transform = $CameraPivot/Horizontal/Vertical/RightArm/HoldingItem.global_transform
+	item.rotation_degrees.x = -90
+	item.set_freeze_enabled(true)
+

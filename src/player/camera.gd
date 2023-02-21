@@ -6,8 +6,8 @@ var max_zoom := 18
 
 var horizontal: float = 0
 var vertical: float = 0
-var v_min: float = -70 # Looking up
-var v_max: float = 12 # Look down
+var v_min: float = -90 # Looking up
+var v_max: float = 90 # Look down
 var h_acceleration := 10
 var v_acceleration := 10
 

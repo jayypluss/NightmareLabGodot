@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://crux4d2qhr8v8"]
+[gd_scene load_steps=6 format=3 uid="uid://crux4d2qhr8v8"]
 
 [ext_resource type="Script" path="res://src/levels/level_1/light_bulb.gd" id="1_qjmkd"]
 [ext_resource type="PackedScene" uid="uid://c8aem4qjchnrf" path="res://src/player/player.tscn" id="1_qtwv6"]
+[ext_resource type="PackedScene" uid="uid://dpukuxwbf56hg" path="res://src/items/flashlight.tscn" id="3_lfdmc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mwofb"]
 albedo_color = Color(0.156863, 0.0862745, 0, 1)
@@ -19,6 +20,7 @@ heightmap_scale = -16.0
 [node name="GlobalFloor" type="CSGBox3D" parent="."]
 use_collision = true
 collision_layer = 2
+collision_mask = 5
 size = Vector3(200, 0.01, 200)
 material = SubResource("StandardMaterial3D_mwofb")
 
@@ -26,36 +28,61 @@ material = SubResource("StandardMaterial3D_mwofb")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.91064, 0)
 use_collision = true
 collision_layer = 2
+collision_mask = 5
 size = Vector3(200, 0.01, 200)
 material = SubResource("StandardMaterial3D_mwofb")
 
 [node name="Room1" type="Node3D" parent="."]
 
-[node name="WallRight" type="CSGBox3D" parent="Room1"]
+[node name="OuterWalls" type="Node3D" parent="Room1"]
+
+[node name="Wall1" type="CSGBox3D" parent="Room1/OuterWalls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 20)
 use_collision = true
 collision_layer = 2
+collision_mask = 5
 size = Vector3(40, 3, 0.1)
 material = SubResource("StandardMaterial3D_om2lg")
 
-[node name="WallLeft" type="CSGBox3D" parent="Room1"]
+[node name="Wall2" type="CSGBox3D" parent="Room1/OuterWalls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -20)
 use_collision = true
 collision_layer = 2
+collision_mask = 5
 size = Vector3(40, 3, 0.1)
 material = SubResource("StandardMaterial3D_om2lg")
 
-[node name="WallFront" type="CSGBox3D" parent="Room1"]
+[node name="Wall3" type="CSGBox3D" parent="Room1/OuterWalls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 1.5, 0)
 use_collision = true
 collision_layer = 2
+collision_mask = 5
 size = Vector3(40, 3, 0.1)
 material = SubResource("StandardMaterial3D_om2lg")
 
-[node name="WallFront2" type="CSGBox3D" parent="Room1"]
+[node name="Wall4" type="CSGBox3D" parent="Room1/OuterWalls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, 1.5, 0)
 use_collision = true
 collision_layer = 2
+collision_mask = 5
+size = Vector3(40, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="InnerWalls" type="Node3D" parent="Room1"]
+
+[node name="Wall5" type="CSGBox3D" parent="Room1/InnerWalls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.17365, 1.5, 0)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(40, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall6" type="CSGBox3D" parent="Room1/InnerWalls"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.18787, 1.5, -2.82203)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
 size = Vector3(40, 3, 0.1)
 material = SubResource("StandardMaterial3D_om2lg")
 
@@ -87,6 +114,16 @@ one_shot = true
 
 [node name="Player" parent="." instance=ExtResource("1_qtwv6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.88402, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+transform = Transform3D(0.999999, -0.00167636, 0.000200866, 0.001676, 0.999997, 0.00176651, -0.000203827, -0.00176617, 0.999998, 0, 0, 0)
+visible = false
+
+[node name="Flashlight" parent="." instance=ExtResource("3_lfdmc")]
+transform = Transform3D(0.987485, 0.15771, -6.89376e-09, 1.73404e-15, -4.37114e-08, -1, -0.15771, 0.987485, -4.31644e-08, -16.7906, 0.0764318, 17.3584)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8.1221)
 
 [connection signal="timeout" from="Room1/LightBulb/HideTimer" to="Room1/LightBulb" method="_on_blinking_timer_timeout"]
 [connection signal="timeout" from="Room1/LightBulb/ShowTimer" to="Room1/LightBulb" method="_on_show_timer_timeout"]
