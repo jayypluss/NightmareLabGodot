@@ -175,7 +175,7 @@ size = Vector3(6, 0.01, 30.05)
 material = SubResource("StandardMaterial3D_mwofb")
 
 [node name="Wall1" type="CSGBox3D" parent="FirstFloor/Room2"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.003, 1.5, -3.001)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.003, 1.5, -3.001)
 layers = 2
 use_collision = true
 collision_layer = 2
@@ -213,12 +213,12 @@ size = Vector3(9.483, 0.01, 40)
 material = SubResource("StandardMaterial3D_mwofb")
 
 [node name="Wall1" type="CSGBox3D" parent="FirstFloor/Room3"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.58334, 1.5, -2.82203)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.583, 1.5, -1.4)
 layers = 4
 use_collision = true
 collision_layer = 2
 collision_mask = 5
-size = Vector3(40, 3, 0.1)
+size = Vector3(37.1544, 3, 0.1)
 material = SubResource("StandardMaterial3D_om2lg")
 
 [node name="Wall2" type="CSGBox3D" parent="FirstFloor/Room3"]
@@ -231,7 +231,7 @@ size = Vector3(9.54312, 3, 0.1)
 material = SubResource("StandardMaterial3D_om2lg")
 
 [node name="Wall3" type="CSGBox3D" parent="FirstFloor/Room3"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.9099, 1.5, 1.97132)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.9099, 1.5, 1.97132)
 layers = 4
 use_collision = true
 collision_layer = 2
