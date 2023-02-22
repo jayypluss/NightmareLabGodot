@@ -71,123 +71,56 @@ size = Vector3(1.5, 1, 1.5)
 
 [node name="Level1" type="Node3D"]
 
-[node name="GlobalFloor" type="CSGBox3D" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_qtwv6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17.1278, 1.88402, 14.959)
+
+[node name="FirstFloor" type="Node3D" parent="."]
+
+[node name="Room1" type="Node3D" parent="FirstFloor"]
+
+[node name="Floor" type="CSGBox3D" parent="FirstFloor/Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9983, -0.00467834, 15.027)
 use_collision = true
 collision_layer = 2
 collision_mask = 5
-size = Vector3(200, 0.01, 200)
+size = Vector3(5.932, 0.01, 10.0332)
 material = SubResource("StandardMaterial3D_mwofb")
 
-[node name="GlobalFloor2" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.91064, 0)
-use_collision = true
-collision_layer = 2
-collision_mask = 5
-size = Vector3(200, 0.01, 200)
-material = SubResource("StandardMaterial3D_mwofb")
-
-[node name="Room1" type="Node3D" parent="."]
-
-[node name="OuterWalls" type="Node3D" parent="Room1"]
-
-[node name="Wall1" type="CSGBox3D" parent="Room1/OuterWalls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 20)
-use_collision = true
-collision_layer = 2
-collision_mask = 5
-size = Vector3(40, 3, 0.1)
-material = SubResource("StandardMaterial3D_om2lg")
-
-[node name="Wall2" type="CSGBox3D" parent="Room1/OuterWalls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -20)
-use_collision = true
-collision_layer = 2
-collision_mask = 5
-size = Vector3(40, 3, 0.1)
-material = SubResource("StandardMaterial3D_om2lg")
-
-[node name="Wall3" type="CSGBox3D" parent="Room1/OuterWalls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 1.5, 0)
-use_collision = true
-collision_layer = 2
-collision_mask = 5
-size = Vector3(40, 3, 0.1)
-material = SubResource("StandardMaterial3D_om2lg")
-
-[node name="Wall4" type="CSGBox3D" parent="Room1/OuterWalls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, 1.5, 0)
-use_collision = true
-collision_layer = 2
-collision_mask = 5
-size = Vector3(40, 3, 0.1)
-material = SubResource("StandardMaterial3D_om2lg")
-
-[node name="InnerWalls" type="Node3D" parent="Room1"]
-
-[node name="Wall5" type="CSGBox3D" parent="Room1/InnerWalls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.0033, 1.5, 5.46972)
-use_collision = true
-collision_layer = 2
-collision_mask = 5
-size = Vector3(40, 3, 0.1)
-material = SubResource("StandardMaterial3D_om2lg")
-
-[node name="Wall8" type="CSGBox3D" parent="Room1/InnerWalls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.45274, 1.5, 17.127)
-use_collision = true
-collision_layer = 2
-collision_mask = 5
-size = Vector3(0.1, 3, 12)
-material = SubResource("StandardMaterial3D_om2lg")
-
-[node name="Wall10" type="CSGBox3D" parent="Room1/InnerWalls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.3641, 1.5, 7.21157)
-use_collision = true
-collision_layer = 2
-collision_mask = 5
-size = Vector3(0.1, 3, 10)
-material = SubResource("StandardMaterial3D_om2lg")
-
-[node name="Wall6" type="CSGBox3D" parent="Room1/InnerWalls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.50756, 1.5, -2.82203)
-use_collision = true
-collision_layer = 2
-collision_mask = 5
-size = Vector3(40, 3, 0.1)
-material = SubResource("StandardMaterial3D_om2lg")
-
-[node name="Wall9" type="CSGBox3D" parent="Room1/InnerWalls"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.39006, 1.5, 12.172)
+[node name="Wall1" type="CSGBox3D" parent="FirstFloor/Room1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.0033, 1.5, 15.0101)
 use_collision = true
 collision_layer = 2
 collision_mask = 5
 size = Vector3(10, 3, 0.1)
 material = SubResource("StandardMaterial3D_om2lg")
 
-[node name="LightBulb" parent="Room1" instance=ExtResource("1_vj1r3")]
-should_blink = true
+[node name="Wall3" type="CSGBox3D" parent="FirstFloor/Room1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20.0033, 1.5, 15.0101)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(10, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
 
-[node name="LightBulb2" parent="Room1" instance=ExtResource("1_vj1r3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.664, 2.79294, 19.7103)
-light_energy = 0.5
+[node name="Wall4" type="CSGBox3D" parent="FirstFloor/Room1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0169, 1.5, 20)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(6, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
 
-[node name="LightBulb3" parent="Room1" instance=ExtResource("1_vj1r3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3254, 2.79294, 19.7103)
-light_energy = 0.5
-
-[node name="Interactables" type="Node3D" parent="Room1"]
-
-[node name="InteractableDoor" type="Node3D" parent="Room1/Interactables"]
+[node name="InteractableDoor" type="Node3D" parent="FirstFloor/Room1"]
 script = ExtResource("2_7x8f2")
 
-[node name="DoorPath" type="Path3D" parent="Room1/Interactables/InteractableDoor"]
+[node name="DoorPath" type="Path3D" parent="FirstFloor/Room1/InteractableDoor"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 17.1255, 1.5, 10.0635)
 curve = SubResource("Curve3D_68nfe")
 
-[node name="PathFollow" type="PathFollow3D" parent="Room1/Interactables/InteractableDoor/DoorPath"]
+[node name="PathFollow" type="PathFollow3D" parent="FirstFloor/Room1/InteractableDoor/DoorPath"]
 transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 0, 0, 0)
 
-[node name="Door" type="CSGBox3D" parent="Room1/Interactables/InteractableDoor/DoorPath/PathFollow"]
+[node name="Door" type="CSGBox3D" parent="FirstFloor/Room1/InteractableDoor/DoorPath/PathFollow"]
 transform = Transform3D(-4.37114e-08, 0, 1, 1, -4.37114e-08, 4.37114e-08, 4.37114e-08, 1, 1.91069e-15, 0, 0, 0)
 use_collision = true
 collision_layer = 2
@@ -195,36 +128,281 @@ collision_mask = 5
 size = Vector3(0.1, 3, 6.2)
 material = SubResource("StandardMaterial3D_om2lg")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Room1/Interactables/InteractableDoor"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FirstFloor/Room1/InteractableDoor"]
 root_node = NodePath("../DoorPath/PathFollow/Door")
 libraries = {
 "": SubResource("AnimationLibrary_f8ukf")
 }
 
-[node name="ButtonPath" type="Path3D" parent="Room1/Interactables/InteractableDoor"]
+[node name="ButtonPath" type="Path3D" parent="FirstFloor/Room1/InteractableDoor"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.59989e-21, 0, 1, 14.1139, 1.49783, 11.334)
 curve = SubResource("Curve3D_efoo2")
 
-[node name="PathFollow" type="PathFollow3D" parent="Room1/Interactables/InteractableDoor/ButtonPath"]
+[node name="PathFollow" type="PathFollow3D" parent="FirstFloor/Room1/InteractableDoor/ButtonPath"]
 transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
 
-[node name="Button" type="CSGCylinder3D" parent="Room1/Interactables/InteractableDoor/ButtonPath/PathFollow"]
+[node name="Button" type="CSGCylinder3D" parent="FirstFloor/Room1/InteractableDoor/ButtonPath/PathFollow"]
 transform = Transform3D(1, 4.38335e-08, -4.37112e-08, 4.38335e-08, -0.00279252, 0.999996, 4.37112e-08, -0.999996, -0.00279252, 0, 0, 0)
 radius = 0.07
 height = 0.125
 material = SubResource("StandardMaterial3D_do54e")
 
-[node name="InteractionArea" type="Area3D" parent="Room1/Interactables/InteractableDoor/ButtonPath/PathFollow/Button"]
+[node name="InteractionArea" type="Area3D" parent="FirstFloor/Room1/InteractableDoor/ButtonPath/PathFollow/Button"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Room1/Interactables/InteractableDoor/ButtonPath/PathFollow/Button/InteractionArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FirstFloor/Room1/InteractableDoor/ButtonPath/PathFollow/Button/InteractionArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.456491, 0)
 shape = SubResource("BoxShape3D_f28fm")
 
-[node name="Player" parent="." instance=ExtResource("1_qtwv6")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 17.1278, 1.88402, 14.959)
+[node name="LightBulb2" parent="FirstFloor/Room1" instance=ExtResource("1_vj1r3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.664, 2.79294, 19.7103)
+light_energy = 0.5
+light_cull_mask = 4293918723
 
-[node name="Flashlight" parent="." instance=ExtResource("3_lfdmc")]
+[node name="LightBulb3" parent="FirstFloor/Room1" instance=ExtResource("1_vj1r3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.3254, 2.79294, 19.7103)
+light_energy = 0.5
+light_cull_mask = 4293918723
+
+[node name="Room2" type="Node3D" parent="FirstFloor"]
+
+[node name="Floor" type="CSGBox3D" parent="FirstFloor/Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9983, -0.00467834, -4.98762)
+layers = 2
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(6, 0.01, 30.05)
+material = SubResource("StandardMaterial3D_mwofb")
+
+[node name="Wall1" type="CSGBox3D" parent="FirstFloor/Room2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 14.003, 1.5, -3.001)
+layers = 2
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(26.1772, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall2" type="CSGBox3D" parent="FirstFloor/Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0041, 1.5, -20)
+layers = 2
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(5.98888, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall3" type="CSGBox3D" parent="FirstFloor/Room2"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 20, 1.5, -4.964)
+layers = 2
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(30.0539, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Room3" type="Node3D" parent="FirstFloor"]
+
+[node name="Floor" type="CSGBox3D" parent="FirstFloor/Room3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.27532, -0.00467834, 0.0323176)
+layers = 4
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(9.483, 0.01, 40)
+material = SubResource("StandardMaterial3D_mwofb")
+
+[node name="Wall1" type="CSGBox3D" parent="FirstFloor/Room3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.58334, 1.5, -2.82203)
+layers = 4
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(40, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall2" type="CSGBox3D" parent="FirstFloor/Room3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.26815, 1.5, -20)
+layers = 4
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(9.54312, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall3" type="CSGBox3D" parent="FirstFloor/Room3"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.9099, 1.5, 1.97132)
+layers = 4
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(36.121, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall4" type="CSGBox3D" parent="FirstFloor/Room3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25069, 1.5, 20)
+layers = 4
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(9.4334, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Flashlight" parent="FirstFloor/Room3" instance=ExtResource("3_lfdmc")]
 transform = Transform3D(0.987485, 0.15771, -6.89376e-09, 1.73404e-15, -4.37114e-08, -1, -0.15771, 0.987485, -4.31644e-08, 5.60903, 0.0764318, -11.1516)
 
-[connection signal="body_entered" from="Room1/Interactables/InteractableDoor/ButtonPath/PathFollow/Button/InteractionArea" to="Room1/Interactables/InteractableDoor" method="_on_interaction_area_body_entered"]
-[connection signal="body_exited" from="Room1/Interactables/InteractableDoor/ButtonPath/PathFollow/Button/InteractionArea" to="Room1/Interactables/InteractableDoor" method="_on_interaction_area_body_exited"]
+[node name="LightBulb" parent="FirstFloor/Room3" instance=ExtResource("1_vj1r3")]
+light_cull_mask = 4293918734
+should_blink = true
+
+[node name="Room4" type="Node3D" parent="FirstFloor"]
+
+[node name="Floor" type="CSGBox3D" parent="FirstFloor/Room4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43404, -0.00467834, 18.578)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(11.9492, 0.01, 2.87823)
+material = SubResource("StandardMaterial3D_mwofb")
+
+[node name="Wall2" type="CSGBox3D" parent="FirstFloor/Room4"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.45274, 1.5, 17.127)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(0.1, 3, 12)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall4" type="CSGBox3D" parent="FirstFloor/Room4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42848, 1.5, 20)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(11.9844, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Room5" type="Node3D" parent="FirstFloor"]
+
+[node name="Floor" type="CSGBox3D" parent="FirstFloor/Room5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6915, -0.00467834, 13.6247)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(12.5975, 0.01, 12.827)
+material = SubResource("StandardMaterial3D_mwofb")
+
+[node name="Wall1" type="CSGBox3D" parent="FirstFloor/Room5"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, 1.5, 13.5917)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(12.906, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall2" type="CSGBox3D" parent="FirstFloor/Room5"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.3641, 1.5, 7.21157)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(0.1, 3, 10)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall3" type="CSGBox3D" parent="FirstFloor/Room5"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.36984, 1.5, 12.1507)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(9.95027, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall4" type="CSGBox3D" parent="FirstFloor/Room5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6788, 1.5, 20)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(12.735, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Room6" type="Node3D" parent="FirstFloor"]
+
+[node name="Floor" type="CSGBox3D" parent="FirstFloor/Room6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.72468, -0.00467834, -6.40106)
+layers = 32
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(24.4422, 0.01, 27.2795)
+material = SubResource("StandardMaterial3D_mwofb")
+
+[node name="Wall1" type="CSGBox3D" parent="FirstFloor/Room6"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -20, 1.5, -6.39852)
+layers = 32
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(27.2039, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall2" type="CSGBox3D" parent="FirstFloor/Room6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.76535, 1.5, -20)
+layers = 32
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(24.4999, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall3" type="CSGBox3D" parent="FirstFloor/Room6"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.50756, 1.5, -6.37311)
+layers = 32
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(27.1583, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall4" type="CSGBox3D" parent="FirstFloor/Room6"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -12.3283, 1.5, 7.10422)
+layers = 32
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(0.1, 3, 10.0656)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Room7" type="Node3D" parent="FirstFloor"]
+
+[node name="Floor" type="CSGBox3D" parent="FirstFloor/Room7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.43404, -0.00467834, 12.1578)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(11.9492, 0.01, 9.95198)
+material = SubResource("StandardMaterial3D_mwofb")
+
+[node name="Wall1" type="CSGBox3D" parent="FirstFloor/Room7"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.29828, 1.5, 12.0433)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(9.98698, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall3" type="CSGBox3D" parent="FirstFloor/Room7"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.50756, 1.5, 12.1569)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(9.93912, 3, 0.1)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[node name="Wall4" type="CSGBox3D" parent="FirstFloor/Room7"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.40406, 1.5, 17.0296)
+use_collision = true
+collision_layer = 2
+collision_mask = 5
+size = Vector3(0.1, 3, 12)
+material = SubResource("StandardMaterial3D_om2lg")
+
+[connection signal="body_entered" from="FirstFloor/Room1/InteractableDoor/ButtonPath/PathFollow/Button/InteractionArea" to="FirstFloor/Room1/InteractableDoor" method="_on_interaction_area_body_entered"]
+[connection signal="body_exited" from="FirstFloor/Room1/InteractableDoor/ButtonPath/PathFollow/Button/InteractionArea" to="FirstFloor/Room1/InteractableDoor" method="_on_interaction_area_body_exited"]
